@@ -5,6 +5,7 @@ abstract class PartnesViewModelProtocol extends ChangeNotifier {
   bool get isLoading;
 
   void getAll();
+  void didTap();
   String name(int index);
   String image(int index);
   String discount(int index);
@@ -22,45 +23,50 @@ class PartnesView extends StatelessWidget {
         title: const Text('Partnes'),
       ),
       body: AnimatedBuilder(
-          animation: viewModel,
-          builder: (_, __) {
-            if (viewModel.isLoading) {
-              return const Center(child: CircularProgressIndicator());
-            }
+        animation: viewModel,
+        builder: (_, __) {
+          if (viewModel.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
 
-            return ListView.builder(
-              itemCount: viewModel.length,
-              itemBuilder: (_, index) {
-                return Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                  child: Card(
-                    child: ListTile(
-                      contentPadding: const EdgeInsets.all(18),
-                      leading: CircleAvatar(
-                        backgroundImage: NetworkImage(viewModel.image(index)),
-                      ),
-                      title: Text(viewModel.name(index)),
-                      trailing: SizedBox(
-                        height: 60,
-                        width: 50,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(viewModel.discount(index)),
-                            const Icon(
-                              Icons.arrow_downward,
-                              color: Colors.red,
-                            ),
-                          ],
-                        ),
+          return ListView.builder(
+            itemCount: viewModel.length,
+            itemBuilder: (_, index) {
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
+                child: Card(
+                  child: ListTile(
+                    contentPadding: const EdgeInsets.all(18),
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(viewModel.image(index)),
+                    ),
+                    title: Text(viewModel.name(index)),
+                    trailing: SizedBox(
+                      height: 60,
+                      width: 50,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(viewModel.discount(index)),
+                          const Icon(
+                            Icons.arrow_downward,
+                            color: Colors.red,
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                );
-              },
-            );
-          }),
+                ),
+              );
+            },
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: viewModel.didTap,
+        child: const Icon(Icons.search),
+      ),
     );
   }
 }

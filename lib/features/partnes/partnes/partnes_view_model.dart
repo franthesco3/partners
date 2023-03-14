@@ -37,6 +37,11 @@ class PartnesViewModel extends PartnesProtocol {
   }
 
   @override
+  void didTap() {
+    goToScrenn?.call(_partnes);
+  }
+
+  @override
   String name(int index) {
     return _partnes[index].fantasyName;
   }

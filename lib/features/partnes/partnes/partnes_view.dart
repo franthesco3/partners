@@ -19,9 +19,6 @@ class PartnesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Partnes'),
-      ),
       body: AnimatedBuilder(
         animation: viewModel,
         builder: (_, __) {
@@ -29,37 +26,69 @@ class PartnesView extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
 
-          return ListView.builder(
-            itemCount: viewModel.length,
-            itemBuilder: (_, index) {
-              return Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
-                child: Card(
-                  child: ListTile(
-                    contentPadding: const EdgeInsets.all(18),
-                    leading: CircleAvatar(
-                      backgroundImage: NetworkImage(viewModel.image(index)),
-                    ),
-                    title: Text(viewModel.name(index)),
-                    trailing: SizedBox(
-                      height: 60,
-                      width: 50,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(viewModel.discount(index)),
-                          const Icon(
-                            Icons.arrow_downward,
-                            color: Colors.red,
-                          ),
-                        ],
-                      ),
-                    ),
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(height: 20),
+              const Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: Text(
+                  'Veja a lista de parceiros disponíveis:',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w300,
                   ),
                 ),
-              );
-            },
+              ),
+              const SizedBox(height: 20),
+              Expanded(
+                child: ListView.builder(
+                  itemCount: viewModel.length,
+                  itemBuilder: (_, index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4, horizontal: 16),
+                      child: Card(
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.all(18),
+                          leading: SizedBox(
+                            height: 60,
+                            width: 60,
+                            child: CircleAvatar(
+                              backgroundImage:
+                                  NetworkImage(viewModel.image(index)),
+                            ),
+                          ),
+                          title: Text(
+                            viewModel.name(index),
+                            style: const TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                          trailing: SizedBox(
+                            height: 40,
+                            width: 60,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  viewModel.discount(index),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
+                                const Icon(
+                                  Icons.arrow_downward,
+                                  color: Colors.red,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
           );
         },
       ),

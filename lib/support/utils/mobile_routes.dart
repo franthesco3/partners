@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:partners/features/home/home_factory.dart';
+import 'package:partners/features/splash_screen/splash_screen_factory.dart';
 
 import '../../features/partnes/partnes_factory.dart';
 import '../../features/search/search_factory.dart';
 import '../models/partners.dart';
 
 class MobileRoutes {
-  static const String initialRoute = PartnesFactory.route;
+  static const String initialRoute = SplashScreenFactory.route;
 
   static Map<String, WidgetBuilder> routes = {
     PartnesFactory.route: (_) {
@@ -15,6 +17,12 @@ class MobileRoutes {
       final partnes =
           ModalRoute.of(context)?.settings.arguments as List<Partnes>;
       return SearchFactory.search(partnes);
-    }
+    },
+    SplashScreenFactory.route: (context) {
+      return SplashScreenFactory.splashScreen();
+    },
+    HomeFactory.route: (_) {
+      return HomeFactory.home();
+    },
   };
 }

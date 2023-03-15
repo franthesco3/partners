@@ -18,6 +18,14 @@ class SplashScreenView extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          const Text(
+            'Olá! Bem vindo!',
+            style: TextStyle(
+              fontSize: 28,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Hind',
+            ),
+          ),
           Lottie.asset(Constants.partnes),
           const Text(
             'Seja um parceiro comercial!',

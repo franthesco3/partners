@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../support/components/list_card.dart';
+import '../../../support/utils/localize.dart';
 
 abstract class SearchViewModelProtocol extends ChangeNotifier {
   int get length;
@@ -21,9 +22,11 @@ class SearchView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = Localize.instance.l10n;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Search partnes'),
+        title: Text(l10n.searchTitle),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -32,9 +35,9 @@ class SearchView extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             child: TextField(
               onChanged: viewModel.change,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Pesquisar parceiro',
+              decoration: InputDecoration(
+                border: const OutlineInputBorder(),
+                labelText: l10n.searchPartnesLabel,
               ),
             ),
           ),

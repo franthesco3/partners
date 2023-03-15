@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:partners/features/partnes/partnes_factory.dart';
+import 'package:partners/support/utils/localize.dart';
 
 import '../../favorites/favorites_factory.dart';
 
@@ -16,10 +17,11 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = Localize.instance.l10n;
+
     List<Widget> contents = [
       PartnesFactory.partnes(),
       FavoritesFactory.favorites(),
-      //const Center(child: Text('Centeerrrrrr'))
     ];
 
     return AnimatedBuilder(
@@ -27,19 +29,19 @@ class HomeView extends StatelessWidget {
         builder: (context, snapshot) {
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Partnes'),
+              title: Text(l10n.appTitle),
             ),
             bottomNavigationBar: BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
               backgroundColor: Colors.blue,
-              items: const <BottomNavigationBarItem>[
+              items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  label: 'Home',
+                  icon: const Icon(Icons.home),
+                  label: l10n.homeTitle,
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite),
-                  label: 'Favorites',
+                  icon: const Icon(Icons.favorite),
+                  label: l10n.favoritesTitle,
                 ),
               ],
               selectedItemColor: Colors.white,

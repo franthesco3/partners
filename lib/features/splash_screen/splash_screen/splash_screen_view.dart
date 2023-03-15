@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../support/utils/constants.dart';
+import '../../../support/utils/localize.dart';
 
 abstract class SplashScreenViewModelProtocol {
   void goToHome();
@@ -14,25 +15,25 @@ class SplashScreenView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = Localize.instance.l10n;
+
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
-            'Olá! Bem vindo!',
-            style: TextStyle(
+          Text(
+            l10n.welcomeTitle,
+            style: const TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,
-              fontFamily: 'Hind',
             ),
           ),
           Lottie.asset(Constants.partnes),
-          const Text(
-            'Seja um parceiro comercial!',
-            style: TextStyle(
+          Text(
+            l10n.bePartnesCompany,
+            style: const TextStyle(
               fontSize: 28,
               fontWeight: FontWeight.bold,
-              fontFamily: 'Hind',
             ),
           )
         ],

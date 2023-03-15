@@ -1,0 +1,20 @@
+{
+    "@@locale" : "pt",
+    "appTitle" : "Partnes - Parceiros comerciais",
+    
+
+    "cancelTitle" : "Cancelar",
+    "addTitle" : "Adicionar",
+    "deletePartnes" : "Deletar parceiro",
+    "partnesDone" : "Lista de Parceiros firmados",
+    "wantAddFavorite" : "'Deseja adicionar como favorito ?",
+    "listEmptyFavorites" : "Lista de favoritos vazia",
+    "listAvailablePartners" : "Veja a lista de parceiros disponíveis:",
+    "tryLater": "Ocorreu um erro, tente novamente mais tarde",
+    "homeTitle" : "Início",
+    "favoritesTitle" : "Favoritos",
+    "searchTitle" : "Buscr Partnes",
+    "searchPartnesLabel" : "Pesquisar parceiro",
+    "welcomeTitle" : "Olá! Bem vindos!",
+    "bePartnesCompany" :"Seja um parceiro comercial"
+}

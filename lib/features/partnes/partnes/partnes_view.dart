@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../support/components/list_card.dart';
+import '../../../support/utils/localize.dart';
 
 abstract class PartnesViewModelProtocol extends ChangeNotifier {
   int get length;
@@ -21,6 +22,8 @@ class PartnesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = Localize.instance.l10n;
+
     return Scaffold(
       body: AnimatedBuilder(
         animation: viewModel,
@@ -29,15 +32,19 @@ class PartnesView extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
 
+          if (viewModel.length == 0) {
+            Center(child: Text(l10n.tryLater));
+          }
+
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
-              const Padding(
-                padding: EdgeInsets.only(left: 20),
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
                 child: Text(
-                  'Veja a lista de parceiros disponíveis:',
-                  style: TextStyle(
+                  l10n.listAvailablePartners,
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w300,
                   ),

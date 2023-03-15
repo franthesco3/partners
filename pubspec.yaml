@@ -14,12 +14,16 @@ dependencies:
   lottie: ^2.3.0
   path_provider: ^2.0.12
   flutter_slidable: ^2.0.0
+  flutter_native_splash: any
   cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: "assets/images/icon.png"
 
 flutter:
   uses-material-design: true

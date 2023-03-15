@@ -6,10 +6,12 @@ abstract class SearchViewModelProtocol extends ChangeNotifier {
   int get length;
 
   void copyWith();
+  void savePartnes();
   String name(int index);
   String image(int index);
   void change(String value);
   String discount(int index);
+  void addFavorite(int index);
 }
 
 class SearchView extends StatelessWidget {
@@ -43,10 +45,13 @@ class SearchView extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: viewModel.length,
                   itemBuilder: (_, index) {
-                    return ListCard(
-                      name: viewModel.name(index),
-                      image: viewModel.image(index),
-                      discount: viewModel.discount(index),
+                    return InkWell(
+                      onTap: () => viewModel.addFavorite(index),
+                      child: ListCard(
+                        name: viewModel.name(index),
+                        image: viewModel.image(index),
+                        discount: viewModel.discount(index),
+                      ),
                     );
                   },
                 ),

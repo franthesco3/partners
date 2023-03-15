@@ -1,4 +1,5 @@
 import '../../../models/partners.dart';
+import '../../../support/utils/localize.dart';
 import '../../search/search_factory.dart';
 import 'partnes_view.dart';
 import 'package:flutter/material.dart';
@@ -35,6 +36,8 @@ class _PartnesViewControllerState extends State<PartnesViewController> {
       Navigator.pushNamed(context, SearchFactory.route, arguments: partnes);
     };
     widget.viewModel.onTapFavorite = () {
+      final l10n = Localize.instance.l10n;
+
       showModalBottomSheet(
         isDismissible: false,
         context: context,
@@ -45,9 +48,9 @@ class _PartnesViewControllerState extends State<PartnesViewController> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const Text(
-                  'Deseja adicionar como favorito ?',
-                  style: TextStyle(fontSize: 20),
+                Text(
+                  l10n.wantAddFavorite,
+                  style: const TextStyle(fontSize: 20),
                 ),
                 const Divider(),
                 Row(
@@ -58,16 +61,16 @@ class _PartnesViewControllerState extends State<PartnesViewController> {
                         widget.viewModel.savePartnes();
                         Navigator.pop(context);
                       },
-                      child: const Text(
-                        'Adicionar',
-                        style: TextStyle(color: Colors.blue),
+                      child: Text(
+                        l10n.addTitle,
+                        style: const TextStyle(color: Colors.blue),
                       ),
                     ),
                     TextButton(
                       onPressed: () => Navigator.pop(context),
-                      child: const Text(
-                        'Cancelar',
-                        style: TextStyle(color: Colors.red),
+                      child: Text(
+                        l10n.cancelTitle,
+                        style: const TextStyle(color: Colors.red),
                       ),
                     )
                   ],

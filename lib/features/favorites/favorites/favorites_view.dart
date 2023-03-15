@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../support/components/list_card.dart';
+import '../../../support/utils/localize.dart';
 
 abstract class FavoritesViewModelProtocol extends ChangeNotifier {
   int get length;
@@ -22,6 +23,8 @@ class FavoritesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = Localize.instance.l10n;
+
     return Scaffold(
       body: AnimatedBuilder(
         animation: viewModel,
@@ -31,18 +34,18 @@ class FavoritesView extends StatelessWidget {
           }
 
           if (viewModel.isEmpty) {
-            return const Center(child: Text('Lista de favoritos Vazia'));
+            return Center(child: Text(l10n.listEmptyFavorites));
           }
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 20),
-              const Padding(
-                padding: EdgeInsets.only(left: 20),
+              Padding(
+                padding: const EdgeInsets.only(left: 20),
                 child: Text(
-                  'Lista de parceiros firmados:',
-                  style: TextStyle(
+                  l10n.partnesDone,
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w300,
                   ),
@@ -59,16 +62,17 @@ class FavoritesView extends StatelessWidget {
                         color: Colors.red,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: const [
+                          children: [
                             Text(
-                              'Deletar parceiro',
-                              style: TextStyle(
+                              l10n.deletePartnes,
+                              style: const TextStyle(
                                 fontSize: 28,
                                 color: Colors.white,
                               ),
                             ),
-                            SizedBox(width: 60),
-                            Icon(Icons.delete, size: 40, color: Colors.white)
+                            const SizedBox(width: 60),
+                            const Icon(Icons.delete,
+                                size: 40, color: Colors.white)
                           ],
                         ),
                       ),
@@ -82,7 +86,6 @@ class FavoritesView extends StatelessWidget {
                         isFavorite: true,
                         name: viewModel.name(index),
                         image: viewModel.image(index),
-                        // discount: viewModel.discount(index),
                       ),
                     );
                   },

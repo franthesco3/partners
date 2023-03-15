@@ -1,5 +1,5 @@
 import '../../../api/routes/get_partnes_routes.dart';
-import 'package:partners/support/models/partners.dart';
+import 'package:partners/models/partners.dart';
 
 typedef Failure = Function(String error);
 typedef Success = Function(List<Partnes> partnes);

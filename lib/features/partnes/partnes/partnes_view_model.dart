@@ -1,10 +1,13 @@
+import 'package:hive/hive.dart';
 import 'package:partners/features/partnes/partnes/partnes_view_controller.dart';
-import 'package:partners/support/models/partners.dart';
+import 'package:partners/models/partners.dart';
 
 import '../../../support/utils/constants.dart';
 import '../use_cases/partnes_use_case.dart';
 
 class PartnesViewModel extends PartnesProtocol {
+  late Box _box;
+  int _index = 0;
   bool _isLoading = false;
   final List<Partnes> _partnes = [];
   final PartnesUseCaseProtocol useCase;
@@ -22,6 +25,7 @@ class PartnesViewModel extends PartnesProtocol {
     setLoading(true);
     useCase.execute(
       success: (partnes) {
+        _partnes.clear();
         _partnes.addAll(partnes);
 
         _partnes.sort((Partnes p1, Partnes p2) =>
@@ -57,8 +61,27 @@ class PartnesViewModel extends PartnesProtocol {
     return _partnes[index].discountAmount + perc;
   }
 
+  @override
+  void addFavorite(int index) async {
+    _index = index;
+    final partnes = _partnes[index];
+
+    onTapFavorite?.call();
+    notifyListeners();
+  }
+
   void setLoading(bool value) {
     _isLoading = value;
+
+    notifyListeners();
+  }
+
+  @override
+  void savePartnes() async {
+    final partnes = _partnes[_index];
+    _box = await Hive.openBox<Partnes>('partnes');
+
+    _box.put(partnes.id, partnes);
 
     notifyListeners();
   }

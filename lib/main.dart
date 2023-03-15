@@ -1,8 +1,14 @@
+import 'package:hive/hive.dart';
 import 'package:flutter/material.dart';
-
 import 'support/utils/mobile_routes.dart';
+import 'support/adapters/partnes_adapter.dart';
+import 'package:partners/support/utils/hive_configs.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await HiveConfigs.start();
+  Hive.registerAdapter(PartnesHiveAdapter());
+
   runApp(const MainApp());
 }
 

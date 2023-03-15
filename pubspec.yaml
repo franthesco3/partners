@@ -10,7 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
   dio: ^4.0.4
+  hive: ^2.2.3
   lottie: ^2.3.0
+  path_provider: ^2.0.12
+  flutter_slidable: ^2.0.0
   cached_network_image: ^3.2.3
 
 dev_dependencies:

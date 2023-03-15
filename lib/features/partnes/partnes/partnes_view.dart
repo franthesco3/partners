@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../support/components/list_card.dart';
 
 abstract class PartnesViewModelProtocol extends ChangeNotifier {
   int get length;
@@ -6,9 +7,11 @@ abstract class PartnesViewModelProtocol extends ChangeNotifier {
 
   void getAll();
   void didTap();
+  void savePartnes();
   String name(int index);
   String image(int index);
   String discount(int index);
+  void addFavorite(int index);
 }
 
 class PartnesView extends StatelessWidget {
@@ -45,44 +48,12 @@ class PartnesView extends StatelessWidget {
                 child: ListView.builder(
                   itemCount: viewModel.length,
                   itemBuilder: (_, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 4, horizontal: 16),
-                      child: Card(
-                        child: ListTile(
-                          contentPadding: const EdgeInsets.all(18),
-                          leading: SizedBox(
-                            height: 60,
-                            width: 60,
-                            child: CircleAvatar(
-                              backgroundImage:
-                                  NetworkImage(viewModel.image(index)),
-                            ),
-                          ),
-                          title: Text(
-                            viewModel.name(index),
-                            style: const TextStyle(fontWeight: FontWeight.w500),
-                          ),
-                          trailing: SizedBox(
-                            height: 40,
-                            width: 60,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Text(
-                                  viewModel.discount(index),
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 15),
-                                ),
-                                const Icon(
-                                  Icons.arrow_downward,
-                                  color: Colors.red,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
+                    return InkWell(
+                      onTap: () => viewModel.addFavorite(index),
+                      child: ListCard(
+                        name: viewModel.name(index),
+                        image: viewModel.image(index),
+                        discount: viewModel.discount(index),
                       ),
                     );
                   },

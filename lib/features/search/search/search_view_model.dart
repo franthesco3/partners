@@ -1,4 +1,4 @@
-import 'package:partners/support/models/partners.dart';
+import 'package:partners/models/partners.dart';
 import 'package:partners/features/search/search/search_view_controller.dart';
 import 'package:partners/support/utils/constants.dart';
 
@@ -47,7 +47,8 @@ class SearchViewModel extends SearchProtocol {
 
   @override
   String discount(int index) {
-    return _partnes[index].discountAmount;
+    const perc = '%';
+    return _partnes[index].discountAmount + perc;
   }
 
   @override

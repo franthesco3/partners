@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:partners/features/search/search/search_view_controller.dart';
 import 'package:partners/features/search/search/search_view_model.dart';
-import '../../support/models/partners.dart';
+import '../../models/partners.dart';
 
 class SearchFactory {
   static const String route = '/search';

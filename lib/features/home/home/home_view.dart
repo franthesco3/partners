@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:partners/features/partnes/partnes_factory.dart';
 
+import '../../favorites/favorites_factory.dart';
+
 abstract class HomeViewModelProtocol extends ChangeNotifier {
   int get index;
 
@@ -14,16 +16,21 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> contents = [PartnesFactory.partnes()];
+    List<Widget> contents = [
+      PartnesFactory.partnes(),
+      FavoritesFactory.favorites(),
+      //const Center(child: Text('Centeerrrrrr'))
+    ];
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Partnes'),
-      ),
-      bottomNavigationBar: AnimatedBuilder(
-          animation: viewModel,
-          builder: (context, snapshot) {
-            return BottomNavigationBar(
+    return AnimatedBuilder(
+        animation: viewModel,
+        builder: (context, snapshot) {
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Partnes'),
+            ),
+            bottomNavigationBar: BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
               backgroundColor: Colors.blue,
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
@@ -32,15 +39,15 @@ class HomeView extends StatelessWidget {
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.favorite),
-                  label: 'Favorite',
+                  label: 'Favorites',
                 ),
               ],
               selectedItemColor: Colors.white,
               currentIndex: viewModel.index,
               onTap: viewModel.setIndex,
-            );
-          }),
-      body: contents.elementAt(viewModel.index),
-    );
+            ),
+            body: contents.elementAt(viewModel.index),
+          );
+        });
   }
 }

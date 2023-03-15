@@ -35,45 +35,57 @@ class SearchView extends StatelessWidget {
             ),
           ),
           AnimatedBuilder(
-              animation: viewModel,
-              builder: (context, snapshot) {
-                return Expanded(
-                  child: ListView.builder(
-                    itemCount: viewModel.length,
-                    itemBuilder: (_, index) {
-                      return Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 4, horizontal: 16),
-                        child: Card(
-                          child: ListTile(
-                            contentPadding: const EdgeInsets.all(18),
-                            leading: CircleAvatar(
+            animation: viewModel,
+            builder: (context, snapshot) {
+              return Expanded(
+                child: ListView.builder(
+                  itemCount: viewModel.length,
+                  itemBuilder: (_, index) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 4, horizontal: 16),
+                      child: Card(
+                        child: ListTile(
+                          contentPadding: const EdgeInsets.all(18),
+                          leading: SizedBox(
+                            height: 60,
+                            width: 60,
+                            child: CircleAvatar(
                               backgroundImage:
                                   NetworkImage(viewModel.image(index)),
                             ),
-                            title: Text(viewModel.name(index)),
-                            trailing: SizedBox(
-                              height: 60,
-                              width: 50,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Text(viewModel.discount(index)),
-                                  const Icon(
-                                    Icons.arrow_downward,
-                                    color: Colors.red,
-                                  ),
-                                ],
-                              ),
+                          ),
+                          title: Text(
+                            viewModel.name(index),
+                            style: const TextStyle(fontWeight: FontWeight.w500),
+                          ),
+                          trailing: SizedBox(
+                            height: 40,
+                            width: 60,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text(
+                                  viewModel.discount(index),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15),
+                                ),
+                                const Icon(
+                                  Icons.arrow_downward,
+                                  color: Colors.red,
+                                ),
+                              ],
                             ),
                           ),
                         ),
-                      );
-                    },
-                  ),
-                );
-              }),
+                      ),
+                    );
+                  },
+                ),
+              );
+            },
+          ),
         ],
       ),
     );
